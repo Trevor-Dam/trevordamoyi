@@ -1,6 +1,6 @@
 package com.enviro.assessment.grad001.trevordamoyi.controllers.models;
 
-public class ModelLogin{
+public class Login{
     private String username;
     private String password;
     
