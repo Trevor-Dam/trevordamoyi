@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.NoSuchAlgorithmException;
@@ -39,7 +40,7 @@ public class UsersController {
         this.userMapper = userMapper;
     }
 
-    @PostMapping("/api/login")
+    @PostMapping("/user/login")
     @JsonSetter(nulls = Nulls.FAIL)
     public HttpEntity<UserDto> login(@RequestBody Login login) {
         UserDto userDto;
@@ -65,7 +66,7 @@ public class UsersController {
     }
 
 
-    @PostMapping("/api/register")
+    @PostMapping("/user/register")
     @JsonSetter(nulls = Nulls.FAIL)
     public HttpEntity<UserDto> register(@RequestBody Register register) {
         int regUsers = (int) userService.countUsers();

@@ -4,6 +4,7 @@ import com.enviro.assessment.grad001.trevordamoyi.controllers.dto.ScoreDto;
 import com.enviro.assessment.grad001.trevordamoyi.controllers.dto.UserDto;
 import com.enviro.assessment.grad001.trevordamoyi.controllers.mappers.ScoreMapper;
 import com.enviro.assessment.grad001.trevordamoyi.controllers.mappers.UserMapper;
+import com.enviro.assessment.grad001.trevordamoyi.controllers.migrations.Score;
 import com.enviro.assessment.grad001.trevordamoyi.controllers.migrations.ScoreInfo;
 import com.enviro.assessment.grad001.trevordamoyi.controllers.repositories.ScoreRepository;
 import org.hibernate.type.descriptor.DateTimeUtils;
@@ -43,5 +44,9 @@ public class ScoreService {
                 scoreInfo.getScore() + 10,
                 scoreInfo.getNoofinfractions() - 1,
                 userMapper.toEntity((UserDto) scoreInfo.getUserid()));
+    }
+
+    public Score saveScore(ScoreDto scoreDto) {
+        return scoreRepository.saveAndFlush(scoreMapper.toEntity(scoreDto));
     }
 }
