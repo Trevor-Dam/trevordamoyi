@@ -32,8 +32,16 @@ public class ScoreService {
     public void updateScore(ScoreDto scoreDto) {
         scoreInfo = (ScoreInfo) scoreDto;
         scoreRepository.updateScoredateAndScoreAndNoofinfractionsByUserid(LocalDate.now(),
-                scoreInfo.getScore() + 1,
+                scoreInfo.getScore() - 3,
                 scoreInfo.getNoofinfractions() + 1,
+                userMapper.toEntity((UserDto) scoreInfo.getUserid()));
+    }
+
+    public void addScore(ScoreDto scoreDto) {
+        scoreInfo = (ScoreInfo) scoreDto;
+        scoreRepository.updateScoredateAndScoreAndNoofinfractionsByUserid(LocalDate.now(),
+                scoreInfo.getScore() + 10,
+                scoreInfo.getNoofinfractions() - 1,
                 userMapper.toEntity((UserDto) scoreInfo.getUserid()));
     }
 }

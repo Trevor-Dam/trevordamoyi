@@ -23,12 +23,26 @@ public class ScoreController {
         this.scoreService = scoreService;
     }
 
-    @PutMapping("/api/score")
-    public HttpEntity<ScoreDto> updateScore(@RequestBody ScoreDto scoreDto, @RequestParam("id") Long id) {
+    @PutMapping("/api/score/deduct")
+    public HttpEntity<ScoreDto> deductScore(@RequestBody ScoreDto scoreDto, @RequestParam("id") Long id) {
         ScoreInfo scoreInfo = (ScoreInfo) scoreDto;
         if (scoreInfo.getId() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else if (scoreInfo.getId().equals(id)) {
+            scoreService.updateScore(scoreDto);
+            return new ResponseEntity<>(scoreDto, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    @PutMapping("/api/score/add")
+    public HttpEntity<ScoreDto> addScore(@RequestBody ScoreDto scoreDto, @RequestParam("id") Long id) {
+        ScoreInfo scoreInfo = (ScoreInfo) scoreDto;
+        if (scoreInfo.getId() == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if (scoreInfo.getId().equals(id)) {
             scoreService.updateScore(scoreDto);
             return new ResponseEntity<>(scoreDto, HttpStatus.OK);
         }
