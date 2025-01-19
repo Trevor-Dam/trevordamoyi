@@ -2,6 +2,7 @@ package com.enviro.assessment.grad001.trevordamoyi.controllers;
 
 import com.enviro.assessment.grad001.trevordamoyi.controllers.dto.ScoreDto;
 import com.enviro.assessment.grad001.trevordamoyi.controllers.mappers.ScoreMapper;
+import com.enviro.assessment.grad001.trevordamoyi.controllers.migrations.ScoreInfo;
 import com.enviro.assessment.grad001.trevordamoyi.controllers.services.ScoreService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -24,9 +25,10 @@ public class ScoreController {
 
     @PutMapping("/api/score")
     public HttpEntity<ScoreDto> updateScore(@RequestBody ScoreDto scoreDto, @RequestParam("id") Long id) {
-        if (scoreDto.getId() == null) {
+        ScoreInfo scoreInfo = (ScoreInfo) scoreDto;
+        if (scoreInfo.getId() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else if (scoreDto.getId().equals(id)) {
+        } else if (scoreInfo.getId().equals(id)) {
             scoreService.updateScore(scoreDto);
             return new ResponseEntity<>(scoreDto, HttpStatus.OK);
         }
