@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.trevordamoyi.migrations;
+package com.enviro.assessment.grad001.trevordamoyi.controllers.migrations;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -7,12 +7,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
-@Table(name = "community", uniqueConstraints = {
-        @UniqueConstraint(name = "CONSTRAINT_A", columnNames = {"communityid"})
-})
+@Table(name = "community")
 public class Community {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

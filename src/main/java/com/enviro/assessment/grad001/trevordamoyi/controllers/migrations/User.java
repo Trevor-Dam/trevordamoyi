@@ -1,4 +1,4 @@
-package com.enviro.assessment.grad001.trevordamoyi.migrations;
+package com.enviro.assessment.grad001.trevordamoyi.controllers.migrations;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -11,12 +11,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Getter
 @Setter
 @Entity
-@Table(name = "users", indexes = {
-        @Index(name = "CONSTRAINT_INDEX_6", columnList = "CommunityID")
-}, uniqueConstraints = {
-        @UniqueConstraint(name = "CONSTRAINT_6", columnNames = {"userid"}),
-        @UniqueConstraint(name = "CONSTRAINT_6A", columnNames = {"email"})
-})
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,7 +53,7 @@ public class User {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "\"CommunityID\"", nullable = false)
+    @JoinColumn(name = "CommunityID", nullable = false)
     private Community communityID;
 
 }

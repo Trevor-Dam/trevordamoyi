@@ -1,5 +1,12 @@
 package com.enviro.assessment.grad001.trevordamoyi;
 
+import org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,19 +20,9 @@ import org.springframework.boot.CommandLineRunner;
 import java.util.Arrays;
 
 @SpringBootApplication
-public class TrevorDamoyiApplication implements CommandLineRunner {
-
-    private static final Logger log = LoggerFactory.getLogger(TrevorDamoyiApplication.class);
-
+@ComponentScan(basePackages = {"com.enviro.assessment.grad001.trevordamoyi.controllers.mappers"})
+public class TrevorDamoyiApplication {
     public static void main(String[] args) {
         SpringApplication.run(TrevorDamoyiApplication.class, args);
-    }
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
-
-    @Override
-    public void run(String... args) throws Exception {
-
     }
 }
